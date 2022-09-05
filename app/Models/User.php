@@ -40,4 +40,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    private function folders() {
+        return $this->belongsToMany(FlashcardFolder::class, 'users_have_flashcard_folders', 'user_id', 'flashcard_folder_id');
+    }
 }
