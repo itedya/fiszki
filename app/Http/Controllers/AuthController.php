@@ -41,13 +41,15 @@ class AuthController extends Controller
         return $user;
     }
 
-    public function revoke()
+    public function revoke(): \Illuminate\Http\Response
     {
         $user = auth()->user();
         $user->tokens()->delete();
+
+        return response()->noContent();
     }
 
-    public function user()
+    public function user(): ?\Illuminate\Contracts\Auth\Authenticatable
     {
         return auth()->user();
     }
