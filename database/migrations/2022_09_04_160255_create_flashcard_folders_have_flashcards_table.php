@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('flashcard_folder_has_flashcard_folders', function (Blueprint $table) {
+        Schema::create('flashcard_folders_have_flashcards', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('flashcard_folder_id');
-            $table->unsignedBigInteger('flashcard_folder_member_id');
-
-            $table->foreign('flashcard_folder_id', 'ff_has_ff_flashcard_folder_id')->references('id')->on('flashcard_folders');
-            $table->foreign('flashcard_folder_member_id', 'ff_has_ff_flashcard_member_id')->references('id')->on('flashcard_folders');
+            $table->unsignedBigInteger('flashcard_id');
 
             $table->timestamps();
+
+            $table->foreign('flashcard_folder_id')->references('id')->on('flashcard_folders');
+            $table->foreign('flashcard_id')->references('id')->on('flashcards');
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('flashcard_folder_has_flashcard_folders');
+        Schema::dropIfExists('flashcard_folders_have_flashcards');
     }
 };
