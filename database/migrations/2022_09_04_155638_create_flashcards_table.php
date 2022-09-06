@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->string('front', 500);
             $table->string('back', 500);
 
-            $table->text('comment_front');
-            $table->text('comment_back');
+            $table->text('comment_front')->nullable();
+            $table->text('comment_back')->nullable();
 
             $table->timestamps();
         });
