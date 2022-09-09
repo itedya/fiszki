@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix("api")->group(function() {
+Route::prefix("api")->group(function () {
+    Route::get('/auth/csrf', function () {
+        return csrf_token();
+    });
 
     // auth
     Route::post('/auth/login', [\App\Http\Controllers\AuthController::class, 'login']);
