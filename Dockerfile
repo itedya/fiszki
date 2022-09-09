@@ -19,5 +19,7 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 RUN composer install && composer update
 
+RUN php artisan storage:link
+
 EXPOSE 8000
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
