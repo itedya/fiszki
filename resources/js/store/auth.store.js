@@ -2,9 +2,9 @@ import api from "./api";
 import useLocalstorageDriver from "../composables/localstorage-driver";
 
 const useAuthStore = () => {
-    const csrf = useLocalstorageDriver(undefined, "csrf");
-    const token = useLocalstorageDriver(undefined, "token");
-    const user = useLocalstorageDriver(undefined, "user");
+    const csrf = useLocalstorageDriver("csrf");
+    const token = useLocalstorageDriver("token");
+    const user = useLocalstorageDriver("user");
 
     const fetchCSRF = () => {
         return api.get("/auth/csrf")
