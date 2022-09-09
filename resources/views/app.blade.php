@@ -13,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="app"></div>
+<div id="app"></div>
 
-    <script src="{{ asset("js/app.js") }}?{{ filemtime(base_path("public/js/app.js")) }}"></script>
+<script src="{{ asset("js/app.js") }}?{{ filemtime(base_path("public/js/app.js")) }}"></script>
 </body>
 </html>
