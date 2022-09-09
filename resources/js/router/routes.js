@@ -1,8 +1,13 @@
-import Dashboard from "../views/Home.vue";
+import Home from "../views/Home.vue";
+import Login from "../views/Login.vue";
 
 export default [
     {
         path: "/",
-        component: Dashboard
+        component: Home
+    },
+    {
+        path: "/auth/login",
+        component: Login
     }
 ]
