@@ -12,7 +12,7 @@ const active = ref(false);
 </script>
 
 <template>
-    <div class="flex flex-row z-20 w-screen p-3 justify-between items-center bg-slate-800">
+    <div class="fixed top-0 flex flex-row z-20 w-screen p-3 justify-between items-center bg-slate-800">
         <h1 class="font-bold text-3xl px-4">Fiszki</h1>
         <div class="p-2 bg-slate-700 rounded-lg" @click="active = !active">
             <img src="/icons/menu.svg" alt="Menu"/>
