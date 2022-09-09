@@ -1,7 +1,7 @@
 import {computed, ref} from "vue";
 
-const useLocalstorageDriver = (initVal, identifier) => {
-    const internal = ref();
+const useLocalstorageDriver = (identifier) => {
+    const internal = ref(localStorage.getItem(identifier));
 
     return computed({
         get: () => internal.value,
