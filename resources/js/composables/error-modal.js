@@ -21,7 +21,7 @@ const useErrorModal = () => {
                     showModal("Wystąpił błąd serwera. Jeżeli sytuacja się powtarza, skontaktuj się z administratorem (zakładka kontakt).");
             }
         } catch (e) {
-            console.error(e);
+            console.error(err, e);
             showModal("Wystąpił nieznany błąd. Jeżeli sytuacja się powtarza, skontaktuj się z administratorem (zakładka kontakt).");
         }
     }
@@ -40,7 +40,7 @@ const useErrorModal = () => {
         let errors = "";
 
         for (const index in response.data) {
-            errors += response.data[index];
+            errors += response.data[index] + "<br />";
         }
 
         showModal(errors);

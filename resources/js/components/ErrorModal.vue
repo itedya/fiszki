@@ -22,7 +22,7 @@ emitter.on("error:modal:hide", () => {
         <div class="p-5 m-5 w-full bg-slate-800 flex flex-col gap-3 rounded-xl">
             <h2 class="text-2xl font-semibold">Wystąpił błąd</h2>
 
-            <p>{{ text }}</p>
+            <p v-html="text"></p>
 
             <button class="px-3 py-2 rounded-xl w-full bg-slate-700 font-semibold bg-red-800 focus:bg-red-700"
                     @click="active = !active">Zamknij
