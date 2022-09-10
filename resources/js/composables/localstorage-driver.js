@@ -1,7 +1,13 @@
 import {computed, ref} from "vue";
 
-const useLocalstorageDriver = (identifier) => {
-    const internal = ref(localStorage.getItem(identifier));
+const useLocalstorageDriver = (identifier, parseJson = false) => {
+    const internal = ref();
+
+    if (parseJson) {
+        internal.value = JSON.parse(localStorage.getItem(identifier));
+    } else {
+        internal.value = localStorage.getItem(identifier);
+    }
 
     return computed({
         get: () => internal.value,
@@ -9,8 +15,13 @@ const useLocalstorageDriver = (identifier) => {
             if (val === null || val === undefined) {
                 localStorage.removeItem(identifier);
             } else {
-                localStorage.setItem(identifier, val);
+                if (parseJson) {
+                    localStorage.setItem(identifier, JSON.stringify(val));
+                } else {
+                    localStorage.setItem(identifier, val);
+                }
             }
+
             internal.value = val;
         }
     });
