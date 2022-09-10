@@ -13,4 +13,7 @@ api.interceptors.request.use((config) => {
     return config;
 })
 
+export const setCsrfToApi = (csrf) => {
+    api.defaults.headers.common['X-CSRF-TOKEN'] = csrf;
+}
 export default api;
