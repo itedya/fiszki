@@ -13,7 +13,10 @@ const login = async () => {
     const store = useAuthStore();
 
     await store.login(email.value, password.value)
-        .then(() => router.push("/dashboard"))
+        .then(async () => {
+            await store.fetchUser();
+            await router.push("/dashboard");
+        })
         .catch(err => useErrorModal().processServerError(err));
 }
 </script>
