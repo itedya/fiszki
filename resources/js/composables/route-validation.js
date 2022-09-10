@@ -27,7 +27,7 @@ const useRouteValidation = () => {
         const router = useRouter();
         const routes = router.getRoutes();
 
-        return routes.filter(ele => validateRoute(ele));
+        return routes.filter(ele => validateRoute(ele).pass);
     }
 
     return {validateRoute, getFilteredRoutes}
