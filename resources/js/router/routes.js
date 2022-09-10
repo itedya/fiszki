@@ -8,28 +8,36 @@ export default [
     {
         path: "/",
         component: Home,
+        name: "Strona główna",
         meta: {
+            icon: "home.svg",
             auth: RouteAuth.MUST_BE_UNAUTHORIZED
         }
     },
     {
         path: "/auth/login",
         component: Login,
+        name: "Logowanie",
         meta: {
+            icon: "log-in.svg",
             auth: RouteAuth.MUST_BE_UNAUTHORIZED
         }
     },
     {
         path: "/auth/register",
         component: Register,
+        name: "Rejestracja",
         meta: {
+            icon: "user-plus.svg",
             auth: RouteAuth.MUST_BE_UNAUTHORIZED
         }
     },
     {
         path: "/dashboard",
         component: Dashboard,
+        name: "Dashboard",
         meta: {
+            icon: "list.svg",
             auth: RouteAuth.MUST_BE_AUTHORIZED
         }
     }
