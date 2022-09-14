@@ -36,8 +36,7 @@ export default {
             .then(() => flashcardFolders.value = getFlashcardFolders());
 
         const createFolder = () => {
-
-            // router.push("") TODO: Jak utworzysz to
+            router.push("/flashcard-folders/create");
         }
 
         return {flashcardFolders, createFolder};

@@ -7,9 +7,9 @@ const active = ref(false);
 const title = ref();
 const text = ref();
 
-emitter.on("info:modal:show", ({title, text}) => {
-    title.value = title;
-    text.value = text;
+emitter.on("info:modal:show", (data) => {
+    title.value = data.title;
+    text.value = data.text;
     active.value = true;
 });
 

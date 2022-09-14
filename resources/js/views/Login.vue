@@ -22,6 +22,7 @@ const login = async () => {
 </script>
 
 <template>
+    <!-- TODO: Zamień klasy na te nowe .card -->
     <div class="flex justify-center items-center h-screen w-screen">
         <div class="p-5 m-5 w-full bg-slate-800 flex flex-col gap-3 rounded-xl">
             <h2 class="text-xl font-thin">Logowanie</h2>

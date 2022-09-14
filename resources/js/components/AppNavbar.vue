@@ -2,10 +2,13 @@
 
 import {ref} from "vue";
 import useRouteValidation from "../composables/route-validation";
+import NavbarDisplay from "../enums/navbar-display";
 
 const {getFilteredRoutes} = useRouteValidation();
 
-const routes = ref(getFilteredRoutes());
+const routes = ref(getFilteredRoutes().filter(route => {
+    return route.meta.navbarDisplay === NavbarDisplay.DISPLAY_IN_NAVBAR
+}));
 
 const active = ref(false);
 </script>
