@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Flashcards\AssignToFlashcardFolderRequest;
 use App\Http\Requests\Flashcards\CreateFlashcardRequest;
+use App\Http\Requests\Flashcards\GetFlashcardsInFolderRequest;
 use App\Http\Requests\Flashcards\UpdateFlashcardRequest;
 use App\Models\Flashcard;
 use App\Models\FlashcardFolder;
@@ -18,6 +19,15 @@ class FlashcardController extends Controller
             ->where("flashcard_id", $flashcardId)
             ->where("flashcard_folder_id", $flashcardFolderId)
             ->count();
+    }
+
+    public function get(GetFlashcardsInFolderRequest $request)
+    {
+        $data = $request->validated();
+
+        return Flashcard::with("folders")->whereHas('folders', function ($query) use ($data) {
+            return $query->where('id', $data['id']);
+        })->get();
     }
 
     public function assignToFlashcardFolder(AssignToFlashcardFolderRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
