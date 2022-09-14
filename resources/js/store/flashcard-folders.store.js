@@ -25,8 +25,16 @@ const getFlashcardFolders = (userId = null) => {
     return Object.values(flashcardFolders.value).filter(ele => ele.userId === userId);
 }
 
+const createFlashcardFolder = (name, userId = null) => {
+    const api = useAxiosApi();
+    const payload = {name};
+    if (userId !== null) payload.user_id = userId;
+
+    return api.post("/flashcard-folders", payload);
+}
+
 const useFlashcardFoldersStore = () => {
-    return {fetchFlashcardFolders, getFlashcardFolders};
+    return {fetchFlashcardFolders, getFlashcardFolders, createFlashcardFolder};
 }
 
 export default useFlashcardFoldersStore;
