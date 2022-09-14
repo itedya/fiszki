@@ -14,6 +14,7 @@ class UpdateFlashcardRequest extends JsonFormRequest
     public function rules()
     {
         return [
+            'id' => ['required', 'integer', 'min:1', 'exists:flashcards,id'],
             'front' => ['required', 'string', 'min:1', 'max:500'],
             'back' => ['required', 'string', 'min:1', 'max:500'],
             'comment_front' => ['string', 'min:1', 'max:1000'],

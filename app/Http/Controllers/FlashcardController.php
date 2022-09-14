@@ -28,7 +28,6 @@ class FlashcardController extends Controller
             return response()->json(['errors' => ['flashcard_id' => 'Ta fiszka została już dodana do tego folderu']], 422);
         }
 
-
         $flashcard = Flashcard::find($data['flashcard_id']);
 
         DB::beginTransaction();
@@ -67,6 +66,7 @@ class FlashcardController extends Controller
             $folder = FlashcardFolder::findOrFail($data['flashcard_folder_id']);
             $folder->flashcards()->assign($flashcard->id);
             $folder->save();
+
             DB::commit();
 
             return response()->json($flashcard, Response::HTTP_CREATED);
@@ -80,9 +80,10 @@ class FlashcardController extends Controller
     {
         $data = $request->validated();
 
+        $flashcard = Flashcard::findOrFail($data['flashcard_id']);
+
         DB::beginTransaction();
         try {
-            $flashcard = Flashcard::findOrFail($data['flashcard_id']);
             $flashcard->front = $data['front'];
             $flashcard->back = $data['back'];
 
