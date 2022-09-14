@@ -1,10 +1,11 @@
 import {ref} from "vue";
-import api from "./api";
 import useAuthStore from "./auth.store";
+import useAxiosApi from "./api";
 
 const flashcardFolders = ref({});
 
 const fetchFlashcardFolders = (userId = null) => {
+    const api = useAxiosApi();
     const params = userId === null ? {} : {userId};
 
     return api.get(`/flashcard-folders`, {params})
