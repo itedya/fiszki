@@ -11,7 +11,6 @@ const fetchFlashcardFolders = (userId = null) => {
     return api.get(`/flashcard-folders`, {params})
         .then(({data}) => {
             data.forEach(flashcard => flashcardFolders.value[flashcard.id] = flashcard);
-
             return data;
         });
 }
@@ -22,7 +21,7 @@ const getFlashcardFolders = (userId = null) => {
         userId = authStore.user.value.id;
     }
 
-    return Object.values(flashcardFolders.value).filter(ele => ele.userId === userId);
+    return Object.values(flashcardFolders.value).filter(ele => ele.owner_id === userId);
 }
 
 const createFlashcardFolder = (name, userId = null) => {
