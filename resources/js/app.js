@@ -11,7 +11,13 @@ const init = async () => {
     }
 
     if (authStore.token.value) {
-        await authStore.fetchUser();
+        await authStore.fetchUser()
+            .catch((err) => {
+                authStore.token.value = null;
+                authStore.user.value = null;
+                console.error(`Authentication token expired! Clearing bearer token.`);
+                return false;
+            });
     } else {
         authStore.user.value = null;
     }
