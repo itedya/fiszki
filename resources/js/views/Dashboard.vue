@@ -11,7 +11,7 @@
         </button>
 
         <div v-if="flashcardFolders.length !== 0" class="flex flex-col justify-content-center gap-5">
-            <div class="card hover:scale-105 duration-300" v-for="folder in flashcardFolders">
+            <div class="card hover:scale-105 duration-300" v-for="folder in flashcardFolders" @click="showFolderInfo(folder.id)">
                 <h3 class="text-xl font-semibold">{{ folder.name }}</h3>
             </div>
         </div>
@@ -30,14 +30,18 @@ export default {
 
         const flashcardFolders = ref([]);
 
-        fetchFlashcardFolders()
+        fetchFlashcardFolders(null)
             .then(() => flashcardFolders.value = getFlashcardFolders());
 
         const createFolder = () => {
             router.push("/flashcard-folders/create");
         }
 
-        return {flashcardFolders, createFolder};
+        const showFolderInfo = (id) => {
+            router.push("/flashcard-folders/" + id);
+        }
+
+        return {flashcardFolders, createFolder, showFolderInfo};
     }
 }
 </script>

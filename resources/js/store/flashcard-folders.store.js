@@ -4,13 +4,29 @@ import useAxiosApi from "./api";
 
 const flashcardFolders = ref({});
 
-const fetchFlashcardFolders = (userId = null) => {
+const fetchFlashcardFolders = (userId = null, withFlashcards = false) => {
     const api = useAxiosApi();
     const params = userId === null ? {} : {userId};
+
+    params.with_flashcards = withFlashcards ? 1 : 0;
 
     return api.get(`/flashcard-folders`, {params})
         .then(({data}) => {
             data.forEach(flashcard => flashcardFolders.value[flashcard.id] = flashcard);
+            return data;
+        });
+}
+
+const fetchFlashcardFolder = (id, withFlashcards = false) => {
+    const api = useAxiosApi();
+
+    withFlashcards = withFlashcards ? 1 : 0;
+
+    return api.get(`/flashcard-folders`, {
+        params: {id, with_flashcards: withFlashcards}
+    })
+        .then(({data}) => {
+            flashcardFolders.value[id] = data;
             return data;
         });
 }
@@ -24,6 +40,15 @@ const getFlashcardFolders = (userId = null) => {
     return Object.values(flashcardFolders.value).filter(ele => ele.owner_id === userId);
 }
 
+const createFlashcard = (front, back, flashcardFolderId) => {
+    const api = useAxiosApi();
+    return api.post('/flashcards', {front, back, folder_id: flashcardFolderId})
+        .then(({data}) => {
+            flashcardFolders.value[flashcardFolderId] = data;
+            return data;
+        });
+}
+
 const createFlashcardFolder = (name, userId = null) => {
     const api = useAxiosApi();
     const payload = {name};
@@ -33,7 +58,14 @@ const createFlashcardFolder = (name, userId = null) => {
 }
 
 const useFlashcardFoldersStore = () => {
-    return {fetchFlashcardFolders, getFlashcardFolders, createFlashcardFolder};
+    return {
+        fetchFlashcardFolders,
+        getFlashcardFolders,
+        createFlashcardFolder,
+        fetchFlashcardFolder,
+        createFlashcard,
+        flashcardFolders
+    };
 }
 
 export default useFlashcardFoldersStore;

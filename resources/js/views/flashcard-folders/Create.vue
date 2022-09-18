@@ -22,14 +22,16 @@ const create = () => {
 
 <template>
     <div class="container pt-16">
-        <div class="card">
-            <h2 class="card-title">Stwórz folder z fiszkami</h2>
+        <div class="p-5">
+            <div class="card">
+                <h2 class="card-title">Stwórz folder z fiszkami</h2>
 
-            <input type="text" class="input" placeholder="Nazwa folderu" v-model="name"/>
+                <input type="text" class="input" placeholder="Nazwa folderu" v-model="name"/>
 
-            <button class="card-w-full-btn" @click="create">
-                Stwórz folder
-            </button>
+                <button class="card-w-full-btn" @click="create">
+                    Stwórz folder
+                </button>
+            </div>
         </div>
     </div>
 </template>

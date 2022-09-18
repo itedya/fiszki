@@ -3,6 +3,7 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Dashboard from "../views/Dashboard.vue";
 import CreateFlashcardFolder from "../views/flashcard-folders/Create.vue";
+import FlashcardFolderInfo from "../views/flashcard-folders/Info.vue";
 import RouteAuth from "../enums/route-auth";
 import NavbarDisplay from "../enums/navbar-display";
 
@@ -51,6 +52,15 @@ export default [
         path: "/flashcard-folders/create",
         component: CreateFlashcardFolder,
         name: "Stwórz folder z fiszkami",
+        meta: {
+            auth: RouteAuth.MUST_BE_AUTHORIZED,
+            navbarDisplay: NavbarDisplay.DO_NOT_DISPLAY_IN_NAVBAR
+        }
+    },
+    {
+        path: "/flashcard-folders/:id",
+        component: FlashcardFolderInfo,
+        name: "Informacje o folderze z fiszkami",
         meta: {
             auth: RouteAuth.MUST_BE_AUTHORIZED,
             navbarDisplay: NavbarDisplay.DO_NOT_DISPLAY_IN_NAVBAR
