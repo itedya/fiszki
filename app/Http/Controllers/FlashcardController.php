@@ -7,7 +7,6 @@ use App\Http\Requests\Flashcards\CreateFlashcardRequest;
 use App\Http\Requests\Flashcards\GetFlashcardsInFolderRequest;
 use App\Http\Requests\Flashcards\UpdateFlashcardRequest;
 use App\Models\Flashcard;
-use App\Models\FlashcardFolder;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -71,12 +70,9 @@ class FlashcardController extends Controller
                 $flashcard->comment_back = $data['comment_back'];
             }
 
+            $flashcard->folder_id = $data['folder_id'];
+
             $flashcard->save();
-
-            $folder = FlashcardFolder::findOrFail($data['flashcard_folder_id']);
-            $folder->flashcards()->assign($flashcard->id);
-            $folder->save();
-
             DB::commit();
 
             return response()->json($flashcard, Response::HTTP_CREATED);

@@ -10,8 +10,8 @@ class Flashcard extends Model
     use HasFactory;
 
 
-    public function folders(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function folders(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsToMany(FlashcardFolder::class, 'flashcard_folder_has_flashcards', 'flashcard_id', 'flashcard_folder_id');
+        return $this->belongsTo(FlashcardFolder::class, 'folder_id', 'id');
     }
 }

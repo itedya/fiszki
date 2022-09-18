@@ -19,7 +19,7 @@ class CreateFlashcardRequest extends JsonFormRequest
             'back' => ['required', 'string', 'min:1', 'max:500'],
             'comment_front' => ['string', 'min:1', 'max:1000'],
             'comment_back' => ['string', 'min:1', 'max:1000'],
-            'flashcard_folder_id' => ['required', 'integer', 'min:1', 'exists:flashcard_folders,id']
+            'folder_id' => ['required', 'integer', 'min:1', 'exists:flashcard_folders,id']
         ];
     }
 }

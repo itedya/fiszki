@@ -4,15 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class FlashcardFolder extends Model
 {
     use HasFactory;
 
-    public function flashcards(): BelongsToMany
+    public function flashcards(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->belongsToMany(Flashcard::class, 'flashcard_folders_have_flashcards', 'flashcard_folder_id', 'flashcard_id');
+        return $this->hasMany(Flashcard::class, 'folder_id', 'id');
     }
 
     public function folders(): BelongsToMany
