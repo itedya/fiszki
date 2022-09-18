@@ -21,6 +21,8 @@ return new class extends Migration {
             $table->text('comment_front')->nullable();
             $table->text('comment_back')->nullable();
 
+            $table->foreignId('folder_id')->references('id')->on('flashcard_folders');
+
             $table->timestamps();
         });
     }
