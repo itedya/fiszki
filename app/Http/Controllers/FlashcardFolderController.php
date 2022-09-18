@@ -13,14 +13,23 @@ class FlashcardFolderController extends Controller
     public function get(GetFlashcardFolderRequest $request)
     {
         $data = $request->validated();
-        if (isset($data['user_id'])) {
-            // TODO: Check permissions
-        } else {
-            $data['user_id'] = auth()->id();
+
+        $query = FlashcardFolder::query();
+
+        if (isset($data['with_flashcards']) && $data['with_flashcards']) {
+            $query->with(["flashcards"]);
         }
 
+        if (isset($data['user_id']) && $data['user_id'] !== auth()->id()) {
+            // TODO: Check permissions
+            $query->where("owner_id", $data['user_id']);
+        } else if (isset($data['id'])) {
+            return $query->findOrFail($data['id']);
+        } else {
+            $query->where("owner_id", auth()->id());
+        }
 
-        return FlashcardFolder::where("owner_id", $data['user_id'])->get();
+        return $query->get();
     }
 
     public function create(CreateFlashardFolderRequest $request): \Illuminate\Http\JsonResponse

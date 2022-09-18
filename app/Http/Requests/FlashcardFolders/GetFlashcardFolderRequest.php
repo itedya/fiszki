@@ -14,7 +14,9 @@ class GetFlashcardFolderRequest extends JsonFormRequest
     public function rules()
     {
         return [
-            'user_id' => ['integer', 'exists:users,id']
+            'user_id' => ['prohibits:id', 'integer', 'exists:users,id'],
+            'id' => ['prohibits:user_id', 'integer', 'exists:flashcard_folders,id'],
+            'with_flashcards' => ['boolean']
         ];
     }
 }
